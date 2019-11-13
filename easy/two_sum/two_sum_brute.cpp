@@ -14,8 +14,10 @@
 
 #include <vector>
 #include <iostream>
+#include <exception>
 
 using std::vector;  using std::cout;    using std::endl;
+using std::exception;
 
 vector<int> twoSum(vector<int>& nums, int target) {
     bool sumFound = false;
@@ -23,7 +25,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
 
     for (int i = 0; i < nums.size(); i++) {
 
-        for (int j = 0; j < nums.size(); j++) {
+        for (int j = i + 1; j < nums.size(); j++) {
             
             int sum = nums[i] + nums[j];
             if ((j != i) && sum == target) {
@@ -39,7 +41,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     }
 
     if (res.size() == 0) {
-        
+        throw "No valid sum was found.";
     }
     
     return res;
@@ -56,6 +58,12 @@ int main() {
 
     cout << result[0] << ": " << nums[result[0]] << endl;
     cout << result[1] << ": " << nums[result[1]] << endl;
+
+    vector<int> nums2 = {2, 7, 11, 15};
+    vector<int> result2 = twoSum(nums2, 9);
+
+    cout << result2[0] << ": " << nums2[result2[0]] << endl;
+    cout << result2[1] << ": " << nums2[result2[1]] << endl;
 
     return 0;
 }
